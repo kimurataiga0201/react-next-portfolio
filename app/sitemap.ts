@@ -1,5 +1,4 @@
 import { MetadataRoute } from 'next';
-import { getAllCategoryList, getAllNewsList } from './_libs/microcms';
 
 const buildUrl = (path?: string) => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL 
@@ -8,21 +7,7 @@ const buildUrl = (path?: string) => {
   return `${baseUrl}${path ?? ''}`;
 };
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const newsContents = await getAllNewsList();
-  const categoryContents = await getAllCategoryList();
-
-  const newsUrls: MetadataRoute.Sitemap = newsContents.map((content) => ({
-    url: buildUrl(`/news/${content.id}`),
-    lastModified: content.revisedAt,
-  }));
-  const categoryUrls: MetadataRoute.Sitemap = categoryContents.map(
-    (content) => ({
-      url: buildUrl(`/news/category/${content.id}`),
-      lastModified: content.revisedAt,
-    })
-  );
-
+export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
@@ -31,18 +16,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
     },
     {
-      url: buildUrl('/members'),
-      lastModified: now,
-    },
-    {
       url: buildUrl('/contact'),
       lastModified: now,
     },
-    {
-      url: buildUrl('/news'),
-      lastModified: now,
-    },
-    ...newsUrls,
-    ...categoryUrls,
   ];
 }

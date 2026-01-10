@@ -25,16 +25,16 @@ export type News = {
 } & MicroCMSListContent;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
-  console.warn('MICROCMS_SERVICE_DOMAIN is not set');
+  throw new Error('MICROCMS_SERVICE_DOMAIN is required');
 }
 
 if (!process.env.MICROCMS_API_KEY) {
-  console.warn('MICROCMS_API_KEY is not set');
+  throw new Error('MICROCMS_API_KEY is required');
 }
 
 const client = createClient({
-  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN || 'dummy',
-  apiKey: process.env.MICROCMS_API_KEY || 'dummy',
+  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
+  apiKey: process.env.MICROCMS_API_KEY,
 });
 
 export const getMembersList = async (queries?: MicroCMSQueries) => {

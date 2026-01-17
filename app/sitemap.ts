@@ -8,19 +8,27 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL
 const buildUrl = (path?: string) => `${baseUrl}${path ?? ''}`;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const newsContents = await getAllNewsList();
-  const categoryContents = await getAllCategoryList();
+  let newsUrls: MetadataRoute.Sitemap = [];
+  let categoryUrls: MetadataRoute.Sitemap = [];
 
-  const newsUrls: MetadataRoute.Sitemap = newsContents.map((content) => ({
-    url: buildUrl(`/news/${content.id}`),
-    lastModified: content.revisedAt,
-  }));
-  const categoryUrls: MetadataRoute.Sitemap = categoryContents.map(
-    (content) => ({
-      url: buildUrl(`/news/category/${content.id}`),
+  try {
+    const newsContents = await getAllNewsList();
+    const categoryContents = await getAllCategoryList();
+
+    newsUrls = newsContents.map((content) => ({
+      url: buildUrl(`/news/${content.id}`),
       lastModified: content.revisedAt,
-    })
-  );
+    }));
+    categoryUrls = categoryContents.map(
+      (content) => ({
+        url: buildUrl(`/news/category/${content.id}`),
+        lastModified: content.revisedAt,
+      })
+    );
+  } catch (error) {
+    console.error('Failed to fetch content for sitemap:', error);
+    // Return basic sitemap if API calls fail
+  }
 
   const now = new Date();
 

@@ -1,9 +1,8 @@
 import { MetadataRoute } from 'next';
 import { getAllCategoryList, getAllNewsList } from './_libs/microcms';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL 
-  ? `https://${process.env.VERCEL_URL}` 
-  : 'http://localhost:3000';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL 
+  || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
 
 const buildUrl = (path?: string) => `${baseUrl}${path ?? ''}`;
 

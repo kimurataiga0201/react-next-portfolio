@@ -1,51 +1,22 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code2, Database, Palette, Globe } from 'lucide-react';
+import { Code2, Database, Palette, Globe, Smartphone, Server, Cpu, Box } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { getSkillsList } from '@/app/_libs/microcms';
+import type { Skill } from '@/app/_libs/microcms';
 
-interface Skill {
-  id: number;
-  category: string;
-  title: string;
-  items: string[];
-  icon: any;
-  color: string;
-}
-
-const skills: Skill[] = [
-  {
-    id: 1,
-    category: 'Frontend',
-    title: 'フロントエンド開発',
-    items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML/CSS'],
-    icon: Code2,
-    color: 'text-blue-400',
-  },
-  {
-    id: 2,
-    category: 'Backend',
-    title: 'バックエンド開発',
-    items: ['Node.js', 'Express', 'Python', 'REST API'],
-    icon: Database,
-    color: 'text-green-400',
-  },
-  {
-    id: 3,
-    category: 'Design',
-    title: 'デザイン・UI/UX',
-    items: ['Figma', 'Adobe XD', 'Framer Motion', 'レスポンシブデザイン'],
-    icon: Palette,
-    color: 'text-purple-400',
-  },
-  {
-    id: 4,
-    category: 'Tools',
-    title: 'ツール・その他',
-    items: ['Git/GitHub', 'VS Code', 'npm/yarn', 'Vercel', 'Firebase'],
-    icon: Globe,
-    color: 'text-orange-400',
-  },
-];
+// アイコンマッピング
+const iconMap: { [key: string]: any } = {
+  Code2,
+  Database,
+  Palette,
+  Globe,
+  Smartphone,
+  Server,
+  Cpu,
+  Box,
+};
 
 const container = {
   hidden: { opacity: 0 },
@@ -63,6 +34,33 @@ const item = {
 };
 
 export default function ProjectsSection() {
+  const [skills, setSkills] = useState<Skill[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const data = await getSkillsList({ orders: 'order' });
+        setSkills(data.contents);
+      } catch (error) {
+        console.error('Failed to fetch skills:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSkills();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="px-6 py-24 max-w-7xl mx-auto">
+        <div className="text-center py-12 text-slate-500">
+          Loading skills...
+        </div>
+      </section>
+    );
+  }
   return (
     <section className="px-6 py-24 max-w-7xl mx-auto">
       {/* Section Header */}
@@ -84,7 +82,7 @@ export default function ProjectsSection() {
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
         {skills.map((skill) => {
-          const Icon = skill.icon;
+          const Icon = iconMap[skill.icon] || Code2;
           
           return (
             <motion.div

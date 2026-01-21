@@ -24,6 +24,15 @@ export type News = {
   category: Category;
 } & MicroCMSListContent;
 
+export type Skill = {
+  category: string;
+  title: string;
+  items: string[];
+  icon: string;
+  color: string;
+  order: number;
+} & MicroCMSListContent;
+
 const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN || '';
 const apiKey = process.env.MICROCMS_API_KEY || '';
 
@@ -112,5 +121,16 @@ export const getAllCategoryList = async () => {
     endpoint: 'categories',
   });
 
+  return listData;
+};
+
+export const getSkillsList = async (queries?: MicroCMSQueries) => {
+  if (!client) {
+    throw new Error('microCMS client is not initialized. Please set MICROCMS_SERVICE_DOMAIN and MICROCMS_API_KEY.');
+  }
+  const listData = await client.getList<Skill>({
+    endpoint: 'skills',
+    queries,
+  });
   return listData;
 };

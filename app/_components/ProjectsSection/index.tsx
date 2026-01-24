@@ -1,10 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code2, Database, Palette, Globe, Smartphone, Server, Cpu, Box } from 'lucide-react';
+import { Code2, Database, Palette, Globe, Smartphone, Server, Cpu, Box, FileCode2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { getSkillsList } from '@/app/_libs/microcms';
 import type { Skill } from '@/app/_libs/microcms';
+import Image from 'next/image';
+
+// プログラミング言語のデータ
+const programmingLanguages = [
+  { name: 'Python', icon: '/python.png', type: 'image', color: 'from-yellow-400 to-blue-500' },
+  { name: 'HTML', icon: '/HTML5_Logo_256.png', type: 'image', color: 'from-orange-500 to-red-500' },
+  { name: 'CSS', icon: '/css3.jpg', type: 'image', color: 'from-blue-400 to-purple-500' },
+  { name: 'Next.js', icon: '/nextjs.jpg', type: 'image', color: 'from-slate-200 to-slate-400' },
+];
 
 // アイコンマッピング
 const iconMap: { [key: string]: any } = {
@@ -71,6 +80,62 @@ export default function ProjectsSection() {
         <p className="text-lg text-slate-400">
           できることと使用している技術
         </p>
+      </div>
+
+      {/* プログラミング言語 - 横スクロール */}
+      <div className="mb-16">
+        <h3 className="text-2xl font-bold text-slate-50 mb-6 px-2">
+          プログラミング言語
+        </h3>
+        <div className="relative">
+          {/* グラデーションオーバーレイ（左右） */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
+          
+          {/* スクロールコンテナ */}
+          <div className="overflow-x-auto scrollbar-hide pb-4 py-4">
+            <div className="flex gap-4 px-2" style={{ width: 'max-content' }}>
+              {programmingLanguages.map((lang, index) => (
+                <motion.div
+                  key={lang.name}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
+                  className="group relative"
+                >
+                  <div className="w-32 h-40 rounded-2xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:border-slate-600 hover:shadow-2xl hover:shadow-slate-900/50 overflow-visible">
+                    {/* アイコン */}
+                    <div className={`transition-all duration-300 group-hover:scale-125 ${lang.type === 'image' ? 'w-16 h-16' : 'text-5xl'}`}>
+                      {lang.type === 'image' ? (
+                        <Image 
+                          src={lang.icon} 
+                          alt={lang.name} 
+                          width={64} 
+                          height={64}
+                          className="object-contain"
+                        />
+                      ) : (
+                        lang.icon
+                      )}
+                    </div>
+                    
+                    {/* 言語名 */}
+                    <div className="text-center">
+                      <p className="text-sm font-semibold text-slate-200 group-hover:text-white transition-colors">
+                        {lang.name}
+                      </p>
+                    </div>
+                    
+                    {/* グラデーション背景 */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${lang.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Skills Grid */}

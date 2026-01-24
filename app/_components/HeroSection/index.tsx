@@ -25,7 +25,7 @@ export default function Hero() {
           
           {/* Bio */}
           <p className="text-xl sm:text-2xl text-slate-400 font-light">
-            デジタルプロダクトを作る
+            ホワイトハッカー専攻でセキュリティやプログラミングを学んでいます。
           </p>
           
           {/* Description */}

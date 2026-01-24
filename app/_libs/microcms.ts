@@ -16,7 +16,7 @@ export type Category = {
   name: string;
 } & MicroCMSListContent;
 
-export type News = {
+export type Blog = {
   title: string;
   description: string;
   content: string;
@@ -72,26 +72,26 @@ export const getMembersList = async (queries?: MicroCMSQueries) => {
   return listData;
 };
 
-export const getNewsList = async (queries?: MicroCMSQueries) => {
+export const getBlogList = async (queries?: MicroCMSQueries) => {
   if (!client) {
     throw new Error('microCMS client is not initialized. Please set MICROCMS_SERVICE_DOMAIN and MICROCMS_API_KEY.');
   }
-  const listData = await client.getList<News>({
-    endpoint: 'news',
+  const listData = await client.getList<Blog>({
+    endpoint: 'blog',
     queries,
   });
   return listData;
 };
 
-export const getNewsDetail = async (
+export const getBlogDetail = async (
   contentId: string,
   queries?: MicroCMSQueries
 ) => {
   if (!client) {
     throw new Error('microCMS client is not initialized. Please set MICROCMS_SERVICE_DOMAIN and MICROCMS_API_KEY.');
   }
-  const detailData = await client.getListDetail<News>({
-    endpoint: 'news',
+  const detailData = await client.getListDetail<Blog>({
+    endpoint: 'blog',
     contentId,
     queries,
     customRequestInit: {
@@ -120,12 +120,12 @@ export const getCategoryDetail = async (
   return detailData;
 };
 
-export const getAllNewsList = async () => {
+export const getAllBlogList = async () => {
   if (!client) {
     throw new Error('microCMS client is not initialized. Please set MICROCMS_SERVICE_DOMAIN and MICROCMS_API_KEY.');
   }
-  const listData = await client.getAllContents<News>({
-    endpoint: 'news',
+  const listData = await client.getAllContents<Blog>({
+    endpoint: 'blog',
   });
 
   return listData;

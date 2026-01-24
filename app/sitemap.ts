@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { getAllCategoryList, getAllNewsList } from './_libs/microcms';
+import { getAllCategoryList, getAllBlogList } from './_libs/microcms';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL 
   || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
@@ -7,20 +7,20 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
 const buildUrl = (path?: string) => `${baseUrl}${path ?? ''}`;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  let newsUrls: MetadataRoute.Sitemap = [];
+  let blogUrls: MetadataRoute.Sitemap = [];
   let categoryUrls: MetadataRoute.Sitemap = [];
 
   try {
-    const newsContents = await getAllNewsList();
+    const blogContents = await getAllBlogList();
     const categoryContents = await getAllCategoryList();
 
-    newsUrls = newsContents.map((content) => ({
-      url: buildUrl(`/news/${content.id}`),
+    blogUrls = blogContents.map((content) => ({
+      url: buildUrl(`/blog/${content.id}`),
       lastModified: content.revisedAt,
     }));
     categoryUrls = categoryContents.map(
       (content) => ({
-        url: buildUrl(`/news/category/${content.id}`),
+        url: buildUrl(`/blog/category/${content.id}`),
         lastModified: content.revisedAt,
       })
     );
@@ -37,18 +37,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
     },
     {
-      url: buildUrl('/members'),
-      lastModified: now,
-    },
-    {
       url: buildUrl('/contact'),
       lastModified: now,
     },
     {
-      url: buildUrl('/news'),
+      url: buildUrl('/blog'),
       lastModified: now,
     },
-    ...newsUrls,
+    ...blogUrls,
     ...categoryUrls,
   ];
 }

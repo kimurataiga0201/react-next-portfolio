@@ -1,4 +1,3 @@
-import Hero from '@/app/_components/Hero';
 import Sheet from '@/app/_components/Sheet';
 
 export const metadata = {
@@ -13,9 +12,8 @@ export const revalidate = 60;
 
 export default function BlogLayout({ children }: Props) {
   return (
-    <>
-      <Hero title="Blog" sub="ブログ" />
+    <div style={{ paddingTop: '120px' }}>
       <Sheet>{children}</Sheet>
-    </>
+    </div>
   );
 }

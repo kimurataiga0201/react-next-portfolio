@@ -1,4 +1,3 @@
-import Hero from '@/app/_components/Hero';
 import Sheet from '@/app/_components/Sheet';
 
 export const metadata = {
@@ -11,9 +10,8 @@ type Props = {
 
 export default function RootLayout({ children }: Props) {
   return (
-    <>
-      <Hero title="Contact" sub="お問い合わせ" />
+    <div style={{ paddingTop: '120px' }}>
       <Sheet>{children}</Sheet>
-    </>
+    </div>
   );
 }

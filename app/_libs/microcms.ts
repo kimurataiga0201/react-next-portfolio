@@ -21,7 +21,7 @@ export type Blog = {
   description: string;
   content: string;
   thumbnail?: MicroCMSImage;
-  category: Category;
+  category?: Category;
 } & MicroCMSListContent;
 
 export type Skill = {

@@ -56,7 +56,7 @@ export default function ProjectsSection() {
     return (
       <section className="px-6 py-24 max-w-7xl mx-auto">
         <div className="text-center py-12 text-slate-500">
-          Loading skills...
+          読み込み中...
         </div>
       </section>
     );
@@ -66,7 +66,7 @@ export default function ProjectsSection() {
       {/* Section Header */}
       <div className="mb-16">
         <h2 className="text-4xl sm:text-5xl font-bold text-slate-50 mb-4">
-          Skills & Abilities
+          スキルと技術
         </h2>
         <p className="text-lg text-slate-400">
           できることと使用している技術

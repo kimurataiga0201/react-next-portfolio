@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Instagram } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -25,13 +25,12 @@ export default function Hero() {
           
           {/* Bio */}
           <p className="text-xl sm:text-2xl text-slate-400 font-light">
-            Building digital products
+            デジタルプロダクトを作る
           </p>
           
           {/* Description */}
           <p className="text-lg text-slate-500 max-w-2xl leading-relaxed">
-            Full Stack Developer specializing in React, Next.js, and Node.js. 
-            I create fast, scalable, and beautiful web applications that solve real problems.
+            バイクとゲームが趣味です
           </p>
           
           {/* Social Links */}
@@ -47,21 +46,13 @@ export default function Hero() {
             </a>
             
             <a
-              href="https://linkedin.com"
+              href="https://www.instagram.com/ta1ga.kim?igsh=NTVuZ3k1cG83MGJ6&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 transition-all duration-200"
             >
-              <Linkedin className="w-5 h-5 text-slate-400 group-hover:text-slate-300" />
-              <span className="text-sm text-slate-300 group-hover:text-slate-200">LinkedIn</span>
-            </a>
-            
-            <a
-              href="mailto:alex@example.com"
-              className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 hover:border-slate-600 transition-all duration-200"
-            >
-              <Mail className="w-5 h-5 text-slate-400 group-hover:text-slate-300" />
-              <span className="text-sm text-slate-300 group-hover:text-slate-200">Email</span>
+              <Instagram className="w-5 h-5 text-slate-400 group-hover:text-slate-300" />
+              <span className="text-sm text-slate-300 group-hover:text-slate-200">Instagram</span>
             </a>
           </div>
         </motion.div>

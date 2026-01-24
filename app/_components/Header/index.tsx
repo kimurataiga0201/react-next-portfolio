@@ -21,19 +21,19 @@ export default function Header() {
             href="#work" 
             className="text-sm text-slate-400 hover:text-slate-200 transition-colors"
           >
-            Work
+            スキル
           </Link>
           <Link 
             href="#about" 
             className="text-sm text-slate-400 hover:text-slate-200 transition-colors"
           >
-            About
+            活動
           </Link>
           <Link 
             href="/contact" 
             className="text-sm text-slate-400 hover:text-slate-200 transition-colors"
           >
-            Contact
+            お問い合わせ
           </Link>
         </nav>
 
@@ -56,21 +56,21 @@ export default function Header() {
               className="text-sm text-slate-400 hover:text-slate-200 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Work
+              スキル
             </Link>
             <Link 
               href="#about" 
               className="text-sm text-slate-400 hover:text-slate-200 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              About
+              活動
             </Link>
             <Link 
               href="/contact" 
               className="text-sm text-slate-400 hover:text-slate-200 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Contact
+              お問い合わせ
             </Link>
           </nav>
         </div>

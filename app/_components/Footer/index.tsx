@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Instagram } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Branding */}
           <div className="text-center md:text-left">
             <p className="text-slate-400 text-sm">
-              Built with Next.js, Tailwind CSS, and Framer Motion
+              Next.js、Tailwind CSS、Framer Motionで構築
             </p>
           </div>
 
@@ -25,20 +25,13 @@ export default function Footer() {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.instagram.com/ta1ga.kim?igsh=NTVuZ3k1cG83MGJ6&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-slate-400 hover:text-slate-200 transition-colors"
-              aria-label="LinkedIn"
+              aria-label="Instagram"
             >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:alex@example.com"
-              className="p-2 text-slate-400 hover:text-slate-200 transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="w-5 h-5" />
+              <Instagram className="w-5 h-5" />
             </a>
           </div>
         </div>

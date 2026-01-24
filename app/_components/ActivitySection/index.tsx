@@ -142,10 +142,10 @@ export default function ActivitySection() {
     <section className="px-6 py-24 max-w-7xl mx-auto">
       <div className="mb-16">
         <h2 className="text-4xl sm:text-5xl font-bold text-slate-50 mb-4">
-          Recent Activity
+          最近の活動
         </h2>
         <p className="text-lg text-slate-400">
-          Latest commits and contributions
+          最新のコミットとコントリビューション
         </p>
       </div>
 
@@ -157,13 +157,13 @@ export default function ActivitySection() {
           transition={{ duration: 0.5 }}
         >
           <h3 className="text-xl font-semibold text-slate-200 mb-6">
-            Contribution Graph (Last 12 weeks)
+            コントリビューショングラフ（過去12週間）
           </h3>
           
           <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
             {contributions.length === 0 ? (
               <div className="text-center py-12 text-slate-500">
-                Loading contributions...
+                読み込み中...
               </div>
             ) : (
             <div className="flex gap-1 overflow-x-auto pb-2">
@@ -187,7 +187,7 @@ export default function ActivitySection() {
             )}
             
             <div className="flex items-center gap-2 mt-6 text-xs text-slate-500">
-              <span>Less</span>
+              <span>少ない</span>
               <div className="flex gap-1">
                 <div className="w-3 h-3 rounded-sm bg-slate-800" />
                 <div className="w-3 h-3 rounded-sm bg-emerald-900/50" />
@@ -195,7 +195,7 @@ export default function ActivitySection() {
                 <div className="w-3 h-3 rounded-sm bg-emerald-500/80" />
                 <div className="w-3 h-3 rounded-sm bg-emerald-400" />
               </div>
-              <span>More</span>
+              <span>多い</span>
             </div>
           </div>
         </motion.div>
@@ -207,18 +207,18 @@ export default function ActivitySection() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <h3 className="text-xl font-semibold text-slate-200 mb-6">
-            Activity Timeline
+            アクティビティタイムライン
           </h3>
           
           {loading ? (
             <div className="text-center py-12 text-slate-500">
-              Loading activity...
+              読み込み中...
             </div>
           ) : activities.length === 0 ? (
             <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-8 text-center">
-              <p className="text-slate-400 mb-2">No recent activity found</p>
+              <p className="text-slate-400 mb-2">最近のアクティビティがありません</p>
               <p className="text-sm text-slate-500">
-                Check back later for updates
+                後ほど再度ご確認ください
               </p>
             </div>
           ) : (
